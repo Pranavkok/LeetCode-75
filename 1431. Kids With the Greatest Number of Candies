@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
+        vector<bool>check ;
+        int max = 0 ;
+        int n = candies.size();
+
+        for(int i=0 ; i<n ; i++){
+            if(max < candies[i]){
+            max = candies[i];
+            }
+        }
+
+        for(int j=0 ; j<n ; j++){
+            if(candies[j] + extraCandies >= max){
+                check.push_back(true);
+            }
+            else{
+                check.push_back(false);
+            }
+        }
+        return check ;
+    }
+};
