@@ -1,0 +1,35 @@
+  void inorder(Node* root ,vector<int>&arr){
+        if(root == NULL)return ;
+        
+        inorder(root->left,arr);
+        arr.push_back(root->data);
+        inorder(root->right,arr);
+    }
+    
+    Node* solve(vector<int>arr,int start,int end){
+        if(start > end)return NULL ;
+        
+        int mid = (start+end)/2 ;
+        
+        Node* nodex = new Node(arr[mid]);
+        
+        nodex->left = solve(arr,start,mid-1);
+        nodex->right = solve(arr,mid+1,end);
+        
+        return nodex ;
+    }
+    
+    Node* balanceBST(Node* root) {
+        // Step 1 : Get array containing a elements of tree
+        vector<int>arr ;
+        inorder(root,arr);
+        
+        // Step 2 : Construct a Balanced BST from a arr
+        int start = 0 ;
+        int n = arr.size() ;
+        int end = n-1 ;
+        
+        Node* ans = solve(arr,start,end);
+        
+        return ans ;
+    }
